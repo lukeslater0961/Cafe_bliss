@@ -27,9 +27,18 @@ public class UiManager : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
     }
 
-	public void Toggle(UiPanel panel, bool toggleValue)
+	public void Toggle(UiPanel panel)
 	{
 		if ((int)panel <= panels.Count)
-			Debug.Log($"toggling{toggleValue}");
+		{
+			Debug.Log($"toggling panel = {panel}");
+			for (int index = 0; index < panels.Count; index++)
+			{
+				if (index != (int)panel)
+					panels[index].enabled = false;
+				else
+					panels[index].enabled = true;
+			}
+		}
 	}
 }
