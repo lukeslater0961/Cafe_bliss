@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ShopState : MenuBaseState
 {
@@ -6,5 +7,10 @@ public class ShopState : MenuBaseState
 	{
 		Debug.Log($"entered {this.GetType().Name}");
 		UiManager.instance.Toggle(UiPanel.Shop);
+	}
+
+	public override void HandleEscape(MenuStateManager menu, Scene currentScene)
+	{
+		menu.SwitchState(MenuStateManager.gameState);
 	}
 }

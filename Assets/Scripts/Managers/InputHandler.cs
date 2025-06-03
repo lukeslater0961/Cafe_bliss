@@ -1,16 +1,36 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class InputHandler : MonoBehaviour
-{
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+{ 
+	public static	InputHandler instance;
+	private			InputAction escapeAction;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+	void Awake()
+	{
+		if (instance == null)
+		{
+			instance = this;
+			DontDestroyOnLoad(this.gameObject);
+		}
+		else
+			Destroy(gameObject);
+	}
+
+	void Start()
+	{
+		escapeAction = InputSystem.actions.FindAction("Escape");
+	}
+
+	void Update()
+	{
+		HandleInput();
+	}
+
+
+	public void HandleInput()
+	{
+		if (escapeAction.WasPressedThisFrame())
+			MenuStateManager.instance.HandleEscapeInput(false);
+	}
 }

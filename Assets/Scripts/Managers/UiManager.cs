@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 public enum UiPanel
 {
+	MainMenu,
 	Options,
 	Shop,
 	Quests
@@ -12,7 +13,7 @@ public enum UiPanel
 public class UiManager : MonoBehaviour
 {
 	public static UiManager instance;
-	public List<Canvas> panels;
+	public List<GameObject> panels;
 
 	void Awake()
 	{
@@ -29,15 +30,14 @@ public class UiManager : MonoBehaviour
 
 	public void Toggle(UiPanel panel)
 	{
+		Debug.Log(panel);
 		if ((int)panel <= panels.Count)
 		{
 			Debug.Log($"toggling panel = {panel}");
-			for (int index = 0; index < panels.Count; index++)
+			for (int i = 0; i < panels.Count; i++)
 			{
-				if (index != (int)panel)
-					panels[index].enabled = false;
-				else
-					panels[index].enabled = true;
+				bool shouldBeActive = (i == (int)panel);
+				panels[i].SetActive(shouldBeActive);
 			}
 		}
 	}

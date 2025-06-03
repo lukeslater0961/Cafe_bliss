@@ -7,23 +7,27 @@ public class MenuStateManager : MonoBehaviour
 
 	public static	MenuStateManager instance;
 
-	public		 OptionsState	optionsState = new OptionsState();
-	public		 QuestState		questState = new QuestState();
-	public		 ShopState		shopState = new ShopState();
-	public		 GameState		gameState = new GameState();
+	public		static MainMenuState	mainMenuState = new MainMenuState();
+	public		static GameState		gameState = new GameState();
+
+	public		static OptionsState		optionsState = new OptionsState();
+	public		static QuestState		questState = new QuestState();
+	public		static ShopState		shopState = new ShopState();
 
 	void Awake()
 	{
 		if (instance == null)
+		{
 			instance = this;
+			DontDestroyOnLoad(this.gameObject);
+		}
 		else
 			Destroy(gameObject);
 	}
 
     void Start()
     {
-		DontDestroyOnLoad(this.gameObject);
-        currentState = gameState;
+        currentState = mainMenuState;
 		currentState.EnterState(this);
     }
 
@@ -31,5 +35,11 @@ public class MenuStateManager : MonoBehaviour
 	{
 		currentState = state;
 		currentState.EnterState(this);
+	}
+
+	public void HandleEscapeInput(bool value)
+	{
+		Scene scene = SceneManager.GetActiveScene();
+		currentState.HandleEscape(this, scene);
 	}
 }

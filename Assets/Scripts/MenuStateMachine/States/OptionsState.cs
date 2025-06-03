@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class OptionsState : MenuBaseState
 {
@@ -6,6 +7,14 @@ public class OptionsState : MenuBaseState
 	{
 		Debug.Log($"entered {this.GetType().Name}");
 		UiManager.instance.Toggle(UiPanel.Options);
+	}
+
+	public override void HandleEscape(MenuStateManager menu, Scene currentScene)
+	{
+		if (currentScene.name == "MainMenu")
+			menu.SwitchState(MenuStateManager.mainMenuState);
+		else
+			menu.SwitchState(MenuStateManager.gameState);
 	}
 
 }
