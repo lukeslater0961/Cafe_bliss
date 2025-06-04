@@ -7,7 +7,9 @@ public enum UiPanel
 	MainMenu,
 	Options,
 	Shop,
-	Quests
+	Quests,
+	Game,
+	Brews
 }
 
 public class UiManager : MonoBehaviour
@@ -30,15 +32,18 @@ public class UiManager : MonoBehaviour
 
 	public void Toggle(UiPanel panel)
 	{
-		Debug.Log(panel);
 		if ((int)panel <= panels.Count)
 		{
 			Debug.Log($"toggling panel = {panel}");
-			for (int i = 0; i < panels.Count; i++)
-			{
-				bool shouldBeActive = (i == (int)panel);
-				panels[i].SetActive(shouldBeActive);
-			}
+			panels[(int)panel].SetActive(true);
+			if (panel == UiPanel.Brews)
+				BrewingStandManager.instance.GetBrews(panels[(int)panel]);
 		}
+	}
+
+	public void ToggleOff(UiPanel panel)
+	{
+		if ((int)panel < panels.Count)
+			panels[(int)panel].SetActive(false);
 	}
 }

@@ -1,18 +1,16 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class QuestState : MenuBaseState
+public class BrewingState : MenuBaseState
 {
 	public override void EnterState(MenuStateManager menu)
 	{
 		Debug.Log($"entered {this.GetType().Name}");
-		UiManager.instance.Toggle(UiPanel.Quests);
+		UiManager.instance.Toggle(UiPanel.Brews);
 	}
-
 
 	public override void HandleEscape(MenuStateManager menu, Scene currentScene)
 	{
-		UiManager.instance.ToggleOff(UiPanel.Quests);
 		menu.SwitchState(MenuStateManager.gameState);
 	}
 }

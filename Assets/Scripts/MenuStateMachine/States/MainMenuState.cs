@@ -11,6 +11,7 @@ public class MainMenuState : MenuBaseState
 
     public override void HandleEscape(MenuStateManager menu, Scene currentScene)
 	{
+		UiManager.instance.ToggleOff(UiPanel.MainMenu);
 		menu.SwitchState(MenuStateManager.optionsState);
 	}
 }

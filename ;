@@ -47,7 +47,7 @@ public class MenuStateManager : MonoBehaviour
 
 	public void SwitchToGame(bool value)
 	{
-		UiManager.instance.ToggleOff(UiPanel.MainMenu);
+		UiManager.instance.ToggleOff(UiPanel.MainMenu)
 		currentState = gameState;
 		currentState.EnterState(this);
 	}
