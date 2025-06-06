@@ -6,9 +6,9 @@ public enum UiPanel
 {
 	MainMenu,
 	Options,
+	Game,
 	Shop,
 	Quests,
-	Game,
 	Brews
 }
 

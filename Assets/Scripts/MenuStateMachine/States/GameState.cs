@@ -6,7 +6,8 @@ public class GameState : MenuBaseState
     public override void EnterState(MenuStateManager menu)
 	{
 		Debug.Log($"entered {this.GetType().Name}");
-		SceneManager.LoadSceneAsync("Game");
+		if (SceneManager.GetActiveScene().name != "Game")
+			SceneManager.LoadSceneAsync("Game");
 		UiManager.instance.Toggle(UiPanel.Game);
 
 		//start game loop
@@ -14,6 +15,7 @@ public class GameState : MenuBaseState
 
     public override void HandleEscape(MenuStateManager menu, Scene currentScene)
 	{
+		//UiManager.instance.ToggleOff(UiPanel.Game);
 		menu.SwitchState(MenuStateManager.optionsState);
 	}
 }
