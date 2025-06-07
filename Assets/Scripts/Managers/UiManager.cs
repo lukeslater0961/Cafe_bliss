@@ -7,8 +7,8 @@ public enum UiPanel
 	MainMenu,
 	Options,
 	Game,
-	Shop,
 	Quests,
+	Shop,
 	Brews
 }
 
@@ -45,5 +45,15 @@ public class UiManager : MonoBehaviour
 	{
 		if ((int)panel < panels.Count)
 			panels[(int)panel].SetActive(false);
+	}
+
+	public void ToggleQuests(bool value)
+	{
+		MenuStateManager.instance.SwitchState(MenuStateManager.questState);
+	}
+
+	public void ToggleShop(bool value)
+	{
+		MenuStateManager.instance.SwitchState(MenuStateManager.shopState);
 	}
 }
