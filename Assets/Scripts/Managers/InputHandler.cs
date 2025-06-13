@@ -5,6 +5,7 @@ public class InputHandler : MonoBehaviour
 { 
 	public static	InputHandler instance;
 	private			InputAction escapeAction;
+	private			InputAction interactAction;
 
 	void Awake()
 	{
@@ -20,6 +21,7 @@ public class InputHandler : MonoBehaviour
 	void Start()
 	{
 		escapeAction = InputSystem.actions.FindAction("Escape");
+		interactAction = InputSystem.actions.FindAction("Interact");
 	}
 
 	void Update()
@@ -32,5 +34,7 @@ public class InputHandler : MonoBehaviour
 	{
 		if (escapeAction.WasPressedThisFrame())
 			MenuStateManager.instance.HandleEscapeInput(false);
+		else if (interactAction.WasPressedThisFrame())
+			QuestsManager.instance.AddQuest();
 	}
 }
