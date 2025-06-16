@@ -14,6 +14,7 @@ public class MenuStateManager : MonoBehaviour
 	public		static QuestState		questState = new QuestState();
 	public		static ShopState		shopState = new ShopState();
 	public		static BrewingState		brewingState = new BrewingState();
+	public		static DailySummaryState	dailySummaryState = new DailySummaryState();
  
 	void Awake()
 	{

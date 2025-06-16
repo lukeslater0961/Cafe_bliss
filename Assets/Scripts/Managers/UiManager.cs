@@ -9,7 +9,8 @@ public enum UiPanel
 	Game,
 	Quests,
 	Shop,
-	Brews
+	Brews,
+	Summary
 }
 
 public class UiManager : MonoBehaviour
@@ -36,8 +37,6 @@ public class UiManager : MonoBehaviour
 		{
 			Debug.Log($"toggling panel = {panel}");
 			panels[(int)panel].SetActive(true);
-			if (panel == UiPanel.Brews)
-				BrewingStandManager.instance.GetBrews(panels[(int)panel]);
 		}
 	}
 

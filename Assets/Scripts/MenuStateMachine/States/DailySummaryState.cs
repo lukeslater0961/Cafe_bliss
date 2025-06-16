@@ -1,20 +1,17 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameState : MenuBaseState
+public class DailySummaryState : MenuBaseState
 {
     public override void EnterState(MenuStateManager menu)
 	{
 		Debug.Log($"entered {this.GetType().Name}");
-		if (SceneManager.GetActiveScene().name != "Game")
-			SceneManager.LoadSceneAsync("Game");
-		UiManager.instance.Toggle(UiPanel.Game);
+		UiManager.instance.Toggle(UiPanel.Summary);
 		GameManager.instance.TogglePause();
 	}
 
     public override void HandleEscape(MenuStateManager menu, Scene currentScene)
 	{
-		GameManager.instance.TogglePause();
-		menu.SwitchState(MenuStateManager.optionsState);
+		menu.SwitchState(MenuStateManager.gameState);
 	}
 }

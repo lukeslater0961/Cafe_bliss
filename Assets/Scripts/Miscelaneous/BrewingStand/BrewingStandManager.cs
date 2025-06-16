@@ -16,8 +16,14 @@ public class BrewingStandManager : MonoBehaviour
 			Destroy(gameObject);
 	}
 
-	public void GetBrews(GameObject panel)
+	void Initialise()
 	{
-		
+		//get player info and add unlocked drinks to List
+		GetBrews();
+	}
+	
+	public void GetBrews()
+	{
+		//get the current brews and foreach unlocked, instantiate them into the UI
 	}
 }

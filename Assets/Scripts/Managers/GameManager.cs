@@ -1,12 +1,18 @@
 using UnityEngine;
+using System;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+	//public static event Action	dayEnded;
 	public static	GameManager instance;
 	public			bool		tutorialState = false;
-	public			int			dayCount = 0;
+	public			bool		gamePaused;
 
+	public			int			dayCount = 0;
+	private			float		dayValue = 600f;
+	private			float		currentDayValue;
 
 	void Awake()
 	{
@@ -19,12 +25,17 @@ public class GameManager : MonoBehaviour
 			Destroy(gameObject);
 	}
 
+	void Start()
+	{
+		gamePaused = true;
+		currentDayValue = 0f;
+		dayCount = 0; // set to players current value in json
+	}
+
 	void Update()
 	{
-		if (dayCount % 1.5 == 0)
-		{
-			// call quest script to setup new quest 
-		}
+		if(!gamePaused)
+			UpdateDayCounter();
 	}
 
 	public void QuitGame(bool value)
@@ -34,4 +45,25 @@ public class GameManager : MonoBehaviour
 			UnityEditor.EditorApplication.isPlaying = false;
 		#endif
 	}
+
+	private void UpdateDayCounter()
+	{
+		currentDayValue += Time.deltaTime;
+		Debug.Log($"currentDayValue = {currentDayValue}");
+
+		if ((int)currentDayValue % 200 == 0 && currentDayValue < dayValue)
+		{
+			//change time of day
+		}
+		else if (currentDayValue == 300f && dayCount/dayCount != 0)
+			QuestsManager.instance.AddQuest();
+		else if (currentDayValue >= dayValue)
+		{
+			dayCount++;
+			currentDayValue = 0f;
+			MenuStateManager.instance.SwitchState(MenuStateManager.dailySummaryState);
+		}
+	}
+
+	public void TogglePause(){gamePaused = !gamePaused;}
 }

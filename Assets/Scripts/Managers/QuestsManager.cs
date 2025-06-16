@@ -8,13 +8,12 @@ public class QuestsManager : MonoBehaviour
 
 	[SerializeField]	List<Quest>	questsList;
 	[SerializeField]	Quest		currentQuest;
+	[SerializeField]	GameObject	questSlot;
 
-	private QuestGoal				activeGoal;
+	private				QuestGoal	activeGoal;
 
-	[SerializeField] GameObject		questSlot;
-
-	GameObject instantiatedQuestSlot;
-	QuestSlotUI slotUi;
+	GameObject		instantiatedQuestSlot;
+	QuestSlotUI		slotUi;
 
 	void Awake()
 	{
@@ -29,6 +28,11 @@ public class QuestsManager : MonoBehaviour
 
 	public void AddQuest()
 	{
+		if (currentQuest && activeGoal)
+		{
+			Debug.Log("A quest is already active");
+			return;
+		}
 		int questIndex = Random.Range(0, questsList.Count);	
 
 		Debug.Log($"fetching quest {questIndex}");
@@ -49,7 +53,7 @@ public class QuestsManager : MonoBehaviour
 	public void UpdateQuest()
 	{
 		activeGoal.currentAmount++;
-		slotUi.SetQuestInfo(currentQuest.questName, currentQuest.description, activeGoal.currentAmount.ToString());
+		slotUi.SetQuestInfo(currentQuest.questName, currentQuest.description, $"{activeGoal.currentAmount}/{currentQuest.amount}");
 		if (activeGoal.CheckCompletion())
 			RemoveQuest();
 	}
@@ -58,11 +62,14 @@ public class QuestsManager : MonoBehaviour
 	{
 		Transform parent = UiManager.instance.panels[(int)UiPanel.Quests].transform;
 		instantiatedQuestSlot = Instantiate(questSlot, parent);
+		instantiatedQuestSlot.transform.position = new Vector3(20f, 0f, 0f);
+
 		slotUi = instantiatedQuestSlot.GetComponent<QuestSlotUI>();
 
 		string title = currentQuest.questName;
 		string description = currentQuest.description;
-		string progress = activeGoal.currentAmount.ToString();
+		string progress = $"{activeGoal.currentAmount}/{currentQuest.amount}";
+
 		slotUi.SetQuestInfo(title , description, progress);
 	}
 }
