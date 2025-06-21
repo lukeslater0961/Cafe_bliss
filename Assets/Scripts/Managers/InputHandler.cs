@@ -35,6 +35,9 @@ public class InputHandler : MonoBehaviour
 		if (escapeAction.WasPressedThisFrame())
 			MenuStateManager.instance.HandleEscapeInput(false);
 		else if (interactAction.WasPressedThisFrame())
-			QuestsManager.instance.AddQuest();
+		{//testing
+			GameManager.instance.currentDayValue = 600;
+			CurrencyManager.instance.coins = 10;
+		}
 	}
 }

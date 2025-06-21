@@ -10,7 +10,7 @@ public class CurrencyManager : MonoBehaviour
 {
 	public static CurrencyManager instance;
 
-	int[]	satisfactionCounts = new int[3];
+	public int[]	satisfactionCounts = new int[3];
 	public int		coins;
 
 	void Awake()
@@ -33,7 +33,7 @@ public class CurrencyManager : MonoBehaviour
 		return coins;
 	}
 	
-	float GetSatisfactionMultiplier()
+	public float GetSatisfactionMultiplier()
 	{
 		float multiplier = 0f;
 		multiplier += satisfactionCounts[(int)satisfactionLevel.VerySatisfied] * 0.08f;

@@ -8,10 +8,12 @@ public class DailySummaryState : MenuBaseState
 		Debug.Log($"entered {this.GetType().Name}");
 		UiManager.instance.Toggle(UiPanel.Summary);
 		GameManager.instance.TogglePause();
+		GameEventManager.instance.EndDay();
 	}
 
     public override void HandleEscape(MenuStateManager menu, Scene currentScene)
 	{
+		UiManager.instance.ToggleOff(UiPanel.Summary);
 		menu.SwitchState(MenuStateManager.gameState);
 	}
 }

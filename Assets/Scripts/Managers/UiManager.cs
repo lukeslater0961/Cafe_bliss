@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
+using TMPro;
 
 public enum UiPanel
 {
@@ -9,7 +10,6 @@ public enum UiPanel
 	Game,
 	Quests,
 	Shop,
-	Brews,
 	Summary
 }
 
@@ -21,14 +21,17 @@ public class UiManager : MonoBehaviour
 	void Awake()
 	{
 		if (instance == null)
+		{
 			instance = this;
+			DontDestroyOnLoad(this.gameObject);
+		}
 		else
 			Destroy(gameObject);
 	}
 
     void Start()
     {
-        DontDestroyOnLoad(this.gameObject);
+		GameEventManager.OnEndOfDay += UpdateSummaryUI;
     }
 
 	public void Toggle(UiPanel panel)
@@ -54,5 +57,15 @@ public class UiManager : MonoBehaviour
 	public void ToggleShop(bool value)
 	{
 		MenuStateManager.instance.SwitchState(MenuStateManager.shopState);
+	}
+
+	public 	void UpdateSummaryUI()
+	{
+		TextMeshProUGUI[] textElements;
+		textElements = panels[(int)UiPanel.Summary].GetComponentsInChildren<TextMeshProUGUI>();
+		Debug.Log($"textElements[1]: {textElements[1]}, Component: {textElements[1].GetType().Name}");
+		textElements[1].text = $"Coins collected : {CurrencyManager.instance.coins}";
+		textElements[2].text = $"Satisfaction Multiplier : x{CurrencyManager.instance.GetSatisfactionMultiplier()}";
+		textElements[3].text = $"Total : {CurrencyManager.instance.ApplyMultiplier()}";
 	}
 }

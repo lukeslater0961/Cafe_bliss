@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
 
 	public			int			dayCount = 0;
 	private			float		dayValue = 600f;
-	private			float		currentDayValue;
+	public			float		currentDayValue;
 
 	void Awake()
 	{
