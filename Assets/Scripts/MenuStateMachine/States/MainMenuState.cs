@@ -7,6 +7,7 @@ public class MainMenuState : MenuBaseState
 	{
 		Debug.Log($"entered {this.GetType().Name}");
 		UiManager.instance.Toggle(UiPanel.MainMenu);
+		SettingsManager.instance.LoadSettings();
 	}
 
     public override void HandleEscape(MenuStateManager menu, Scene currentScene)

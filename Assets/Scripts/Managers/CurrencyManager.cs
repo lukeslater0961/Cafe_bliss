@@ -13,7 +13,7 @@ public class CurrencyManager : MonoBehaviour
 	public int[]	satisfactionCounts = new int[3];
 	public int		coins;
 
-	void Awake()
+void Awake()
 	{
 		if (instance == null)
 			instance = this;

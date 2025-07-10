@@ -51,7 +51,8 @@ public class UiManager : MonoBehaviour
 
 	public void ToggleQuests(bool value)
 	{
-		MenuStateManager.instance.SwitchState(MenuStateManager.questState);
+		if (QuestsManager.instance.currentQuest)
+			MenuStateManager.instance.SwitchState(MenuStateManager.questState);
 	}
 
 	public void ToggleShop(bool value)

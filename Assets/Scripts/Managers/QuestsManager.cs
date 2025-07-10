@@ -7,8 +7,8 @@ public class QuestsManager : MonoBehaviour
 	public static QuestsManager instance;
 
 	[SerializeField]	List<Quest>	questsList;
-	[SerializeField]	Quest		currentQuest;
 	[SerializeField]	GameObject	questSlot;
+	[SerializeField]	public Quest		currentQuest;
 
 	private				QuestGoal	activeGoal;
 
