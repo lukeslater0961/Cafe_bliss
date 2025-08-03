@@ -53,9 +53,10 @@ public class GameManager : MonoBehaviour
 
 		if ((int)currentDayValue % 200 == 0 && currentDayValue < dayValue)
 		{
+			Debug.Log("changing time of day");
 			//change time of day
 		}
-		else if (currentDayValue == 300f && dayCount/dayCount != 0)
+		else if ((int)currentDayValue == 300 && dayCount/dayCount != 0)
 			QuestsManager.instance.AddQuest();
 		else if (currentDayValue >= dayValue)
 		{

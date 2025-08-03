@@ -5,9 +5,6 @@ public class ShopManager : MonoBehaviour
 {
 	public static ShopManager instance;
 
-	[SerializeField]	List<Quest>	itemList;
-	[SerializeField]	GameObject	itemSlot;
-
 	void Awake()
 	{
 		if (instance == null)
@@ -18,9 +15,12 @@ public class ShopManager : MonoBehaviour
 
 	public void BuyItem(GameObject item, int price)
 	{
+		ItemScript script = item.GetComponent<ItemScript>();
 		if (item && CurrencyManager.instance.coins >= price)
 		{
 			//buy item
+			Debug.Log($"Bought item {item.name}");
+			ItemScript.itemInfo.isBought = !ItemScript.itemInfo.isBought;
 		}
 		else
 			Debug.Log($"Not enough currency {CurrencyManager.instance.coins}");
