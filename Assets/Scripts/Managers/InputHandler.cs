@@ -37,7 +37,7 @@ public class InputHandler : MonoBehaviour
 		else if (interactAction.WasPressedThisFrame())
 		{//testing
 			GameManager.instance.currentDayValue = 599;
-			CurrencyManager.instance.coins = 10;
+			CurrencyManager.instance.coins = 1000;
 		}
 	}
 }

@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-	//public static event Action	dayEnded;
 	public static	GameManager instance;
 	public			bool		tutorialState = false;
 	public			bool		gamePaused;

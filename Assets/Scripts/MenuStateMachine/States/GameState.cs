@@ -9,7 +9,8 @@ public class GameState : MenuBaseState
 		if (SceneManager.GetActiveScene().name != "Game")
 			SceneManager.LoadSceneAsync("Game");
 		UiManager.instance.Toggle(UiPanel.Game);
-		GameManager.instance.TogglePause();
+		if (GameManager.instance.gamePaused)
+			GameManager.instance.TogglePause();
 	}
 
     public override void HandleEscape(MenuStateManager menu, Scene currentScene)

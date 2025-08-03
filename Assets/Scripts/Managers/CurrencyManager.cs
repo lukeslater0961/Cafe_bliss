@@ -23,7 +23,7 @@ void Awake()
 
 	void Start()
 	{
-		coins = 0;//set to value from save or 0f
+		coins = 0;//set to value from save or 0
 	}
 
 	public int	ApplyMultiplier()
@@ -58,5 +58,5 @@ void Awake()
 			default:
 				break;
 		}
-	}
+	}//to be called
 }

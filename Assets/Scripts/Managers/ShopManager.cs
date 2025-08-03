@@ -22,7 +22,7 @@ public class ShopManager : MonoBehaviour
 			Debug.Log($"Bought item {item.name}");
 			ItemScript.itemInfo.isBought = !ItemScript.itemInfo.isBought;
 		}
-		else
+		else//Make a colour animation in UI or a movement animation
 			Debug.Log($"Not enough currency {CurrencyManager.instance.coins}");
 	}
 }
